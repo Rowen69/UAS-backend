@@ -23,3 +23,8 @@ Route::get('/', function () {
 
 Route::get('/baju/create', [BajuController::class, 'create'])->name('baju.create');
 Route::post('/baju', [BajuController::class, 'store'])->name('baju.store');
+
+Route::get('/baju/{id}/edit', [BajuController::class, 'edit'])->name('baju.edit');
+Route::put('/baju/{id}', [BajuController::class, 'update'])->name('baju.update');
+
+Route::delete('/baju/{id}', [BajuController::class, 'destroy'])->name('baju.destroy');

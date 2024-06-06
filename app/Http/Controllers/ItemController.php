@@ -9,7 +9,7 @@ class ItemController extends Controller
 {
     public function manageItems()
     {
-        $bajus = Baju::all(); // Fetch all baju from the database
+        $bajus = Baju::orderBy('id', 'asc')->get(); // Fetch all baju from the database
         return view('admin.manageItems', compact('bajus')); // Pass the bajus to the view
     }
 }
