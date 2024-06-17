@@ -1,0 +1,51 @@
+<section id="managePayments">
+    <h2>Manage Payments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Amount</th>
+                <th>Payment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- PHP code untuk menampilkan data dari database -->
+            <?php
+            // Pengaturan koneksi database (menggunakan contoh mysqli)
+            $servername = "localhost";
+            $username = "username";
+            $password = "password";
+            $dbname = "dbname";
+
+            // Membuat koneksi ke database
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            // Memeriksa koneksi
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            // Query untuk mengambil data pembayaran
+            $sql = "SELECT id, customer_name, amount, payment_date FROM payments";
+            $result = $conn->query($sql);
+
+            // Menampilkan data ke dalam tabel
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td>" . $row["customer_name"] . "</td>";
+                    echo "<td>" . $row["amount"] . "</td>";
+                    echo "<td>" . $row["payment_date"] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>No payments found</td></tr>";
+            }
+            $conn->close();
+            ?>
+            <!-- Akhir PHP -->
+        </tbody>
+    </table>
+</section>
