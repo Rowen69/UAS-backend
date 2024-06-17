@@ -7,6 +7,7 @@
 </head>
 <body>
     <a href="{{ route('baju.create') }}">Create New Baju</a>
+    <a href="{{ route('dashboard') }}">Dashboard</a>
     <table border="1">
         <thead>
             <tr>
