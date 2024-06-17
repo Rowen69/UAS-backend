@@ -20,7 +20,7 @@ class CartController extends Controller
         $baju_id = $request->baju_id;
         $quantity = $request->quantity;
 
-        $cartItem = Cart::where('baju_id', $baju_id)->first();
+        $cartItem = Cart::where('baju_id', $baju_id)->last();
 
         if ($cartItem) {
             $cartItem->quantity += $quantity;
@@ -42,5 +42,19 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Item removed from cart successfully!');
     }
+
+    public function updateQuantity(Request $request, $id)
+{
+    $validatedData = $request->validate([
+        'quantity' => 'required|numeric|min:1',
+    ]);
+
+    $cartItem = Cart::findOrFail($id);
+    $cartItem->quantity = $validatedData['quantity'];
+    $cartItem->save();
+
+    return redirect()->back()->with('success', 'Quantity updated successfully!');
+}
+
 }
 
