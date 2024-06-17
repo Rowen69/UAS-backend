@@ -37,3 +37,4 @@ Route::delete('/baju/{id}', [BajuController::class, 'destroy'])->name('baju.dest
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
+Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
