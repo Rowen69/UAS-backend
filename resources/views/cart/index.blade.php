@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="{{route('dashboard ')}}">back</a>
+        <a href="{{route('dashboard')}}">back</a>
         <h2>Cart</h2>
         <table class="table">
             <thead>
