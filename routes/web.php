@@ -17,14 +17,15 @@ use App\Http\Controllers\CartController;
 |
 */
 
+
+//admin route
 Route::get('/admin/manage-items', [ItemController::class, 'manageItems'])->name('manage.items');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//dashboard route
+Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+//baju route
 Route::get('/baju/create', [BajuController::class, 'create'])->name('baju.create');
 Route::post('/baju', [BajuController::class, 'store'])->name('baju.store');
 
@@ -33,8 +34,9 @@ Route::put('/baju/{id}', [BajuController::class, 'update'])->name('baju.update')
 
 Route::delete('/baju/{id}', [BajuController::class, 'destroy'])->name('baju.destroy');
 
-
+//cart route
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.addToCart');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.removeFromCart');
-Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+Route::patch('/cart/add/{id}', [CartController::class, 'addQuantity'])->name('cart.addQuantity');
+Route::patch('/cart/deduct/{id}', [CartController::class, 'deductQuantity'])->name('cart.deductQuantity');

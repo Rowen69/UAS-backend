@@ -12,16 +12,16 @@ class CartController extends Controller
     {
         $cartItems = Cart::with('baju')->get();
 
-        return view('cart.index', compact('cartItems'));
+        return view('cart.cart', compact('cartItems'));
     }
 
     public function addToCart(Request $request)
     {
         $baju_id = $request->baju_id;
         $quantity = $request->quantity;
-
-        $cartItem = Cart::where('baju_id', $baju_id)->last();
-
+    
+        $cartItem = Cart::where('baju_id', $baju_id)->first();
+    
         if ($cartItem) {
             $cartItem->quantity += $quantity;
             $cartItem->save();
@@ -31,9 +31,10 @@ class CartController extends Controller
                 'quantity' => $quantity,
             ]);
         }
-
+    
         return redirect()->back()->with('success', 'Item added to cart successfully!');
     }
+    
 
     public function removeFromCart($id)
     {
@@ -43,17 +44,28 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Item removed from cart successfully!');
     }
 
-    public function updateQuantity(Request $request, $id)
+    public function addQuantity(Request $request, $id)
 {
-    $validatedData = $request->validate([
-        'quantity' => 'required|numeric|min:1',
-    ]);
-
+  
     $cartItem = Cart::findOrFail($id);
-    $cartItem->quantity = $validatedData['quantity'];
+    $cartItem->quantity += 1;
     $cartItem->save();
 
-    return redirect()->back()->with('success', 'Quantity updated successfully!');
+    return redirect()->back()->with('success', 'Quantity added successfully!');
+}
+
+public function deductQuantity(Request $request, $id)
+{
+    $cartItem = Cart::findOrFail($id);
+    $cartItem->quantity -= 1;
+
+    if ($cartItem->quantity < 1) {
+        return redirect()->back()->with('error', 'Quantity cannot be less than 1');
+    }
+
+    $cartItem->save();
+
+    return redirect()->back()->with('success', 'Quantity deducted successfully!');
 }
 
 }

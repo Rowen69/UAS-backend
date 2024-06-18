@@ -18,18 +18,16 @@ class BajuController extends Controller
         $request->validate([
             'nama' => 'required',
             'image' => 'required|image',
-            'harga' => 'required|numeric',
-            'deskripsi' => 'required'
+            'harga' => 'required|numeric'
         ]);
 
         $imageName = time().'.'.$request->file('image')->extension();  
-        $request->file('image')->move(public_path('images'), $imageName);
+        $request->file('image')->move(public_path('images/baju'), $imageName);
 
         $baju = new Baju();
         $baju->nama = $request->nama;
         $baju->gambar = $imageName;
         $baju->harga = $request->harga;
-        $baju->deskripsi = $request->deskripsi;
         $baju->save();
 
         return redirect()->route('manage.items')->with('success', 'Baju has been added successfully.');
@@ -47,7 +45,6 @@ class BajuController extends Controller
             'nama' => 'required',
             'image' => 'image',
             'harga' => 'required|numeric',
-            'deskripsi' => 'required'
         ]);
 
         $baju = Baju::findOrFail($id);

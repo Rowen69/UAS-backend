@@ -7,7 +7,7 @@
 </head>
 <body>
     <a href="{{ route('baju.create') }}">Create New Baju</a>
-    <a href="{{ route('dashboard') }}">Dashboard</a>
+    <a href="{{ route('index') }}">Dashboard</a>
     <table border="1">
         <thead>
             <tr>
@@ -15,7 +15,6 @@
                 <th>Nama</th>
                 <th>Image</th>
                 <th>Harga</th>
-                <th>Deskripsi</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,9 +23,8 @@
             <tr>
                 <td>{{ $baju->id }}</td>
                 <td>{{ $baju->nama }}</td>
-                <td><img src="{{ asset('images/' . $baju->gambar) }}" alt="{{ $baju->nama }}" width="100"></td>
+                <td><img src="{{ asset('images/baju/' . $baju->gambar) }}" alt="{{ $baju->nama }}" width="100"></td>
                 <td>{{ number_format($baju->harga, 2) }}</td>
-                <td>{{ $baju->deskripsi }}</td>
                 <td>
                     <form action="{{ route('baju.destroy', $baju->id) }}" method="POST">
                         @csrf

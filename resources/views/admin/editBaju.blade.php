@@ -15,15 +15,11 @@
         <div>
             <label>Gambar:</label>
             <input type="file" name="image">
-            <img src="{{ asset('images/' . $baju->gambar) }}" alt="{{ $baju->nama }}" width="100">
+            <img src="{{ asset('images/baju/' . $baju->gambar) }}" alt="{{ $baju->nama }}" width="100">
         </div>
         <div>
             <label>Harga:</label>
             <input type="text" name="harga" value="{{ $baju->harga }}">
-        </div>
-        <div>
-            <label>Deskripsi:</label>
-            <textarea name="deskripsi">{{ $baju->deskripsi }}</textarea>
         </div>
         <div>
             <button type="submit">Update</button>

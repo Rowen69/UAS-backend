@@ -18,9 +18,6 @@
         <label for="harga">Harga:</label>
         <input type="number" name="harga" id="harga" required><br>
 
-        <label for="deskripsi">Deskripsi:</label>
-        <textarea name="deskripsi" id="deskripsi" required></textarea><br>
-
         <button type="submit">Submit</button>
     </form>
 </body>

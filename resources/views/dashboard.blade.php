@@ -41,7 +41,7 @@
     <div class="container">
         @foreach($bajus as $baju)
             <div class="card">
-                <img src="{{ asset('images/' . $baju->gambar) }}" alt="{{ $baju->nama }}">
+                <img src="{{ asset('images/baju/' . $baju->gambar) }}" alt="{{ $baju->nama }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $baju->nama }}</h5>
                     <p class="card-text">{{ $baju->deskripsi }}</p>
